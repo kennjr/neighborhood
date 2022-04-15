@@ -1,10 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'hood/base/base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'hood/styles/auth_navbar_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'hood/styles/login_styles.css' %}">
+{% endblock %}
+
+{% block navbar %}
+    {% include 'hood/includes/auth_navbar.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="outer_auth_container">
+        <div class="auth_container">
+            <div class="auth_info_container">
+                <p id="auth_info_title">Sign Up</p>
+                <p>Become a member of your neighborhood's group and contribute to discussions on topics affecting your local community. Get information about the local businesses, police dept. and hospital. Start a discussion in the group about anything that might be of concern to your neighbors.</p>
+                <p>Stay up-to-date with your neighborhood's affairs by creating an account. Have an account? <a href="{% url 'login_page' %}">Login</a>.</p>
+            </div>
+            <div class="auth_form_container">
+                <div class="form_card">
+                    <form method="POST" action="{% url 'login_page' %}">
+                        {% csrf_token %}
+                        <input type="text" placeholder="Name" name="name_field" required>
+                        <input type="email" placeholder="Email" name="email_field" required>
+                        <input type="text" placeholder="Username" name="identifier_field" required>
+                        <input type="password" placeholder="Password" name="password_field" required>
+                        <button type="submit">Log in</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div></div>
+    </div>
+
+{% endblock %}
