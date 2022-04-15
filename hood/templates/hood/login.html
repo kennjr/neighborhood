@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'hood/base/base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'hood/styles/auth_navbar_styles.css' %}">
+{% endblock %}
+
+{% block navbar %}
+    {% include 'hood/includes/auth_navbar.html' %}
+{% endblock %}
+
+{% block content %}
+
+{% endblock %}
