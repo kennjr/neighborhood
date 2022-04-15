@@ -1,0 +1,12 @@
+:root{
+    /* rgb for accent - rgb(0, 102, 255) */
+    --accent-color: #0066ff;
+    --navbar-padding: 2vh 4vw;
+}
+
+.hide_element {
+    display: none;
+    height: 0px;
+    width: 0px;
+    overflow: hidden;
+}
