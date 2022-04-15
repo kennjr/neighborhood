@@ -15,21 +15,21 @@ def register_page(request):
     return render(request, 'hood/register.html', context)
 
 
-@login_required(login_url='/login')
+# @login_required(login_url='/login')
 def neighborhoods_page(request):
 
     context = {"title": "Neighborhood - Hoods"}
     return render(request, 'hood/neighborhoods.html', context)
 
 
-@login_required(login_url='/login')
+# @login_required(login_url='/login')
 def create_profile_page(request):
 
     context = {"title": "Neighborhood - Create Profile"}
     return render(request, 'hood/create_profile.html', context)
 
 
-@login_required(login_url='/login')
+# @login_required(login_url='/login')
 def index(request):
 
     context = {"title": "Neighborhood - Home"}
