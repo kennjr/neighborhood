@@ -1,0 +1,16 @@
+
+
+@font-face {
+    font-family: "anton";
+    src: url("../fonts/Anton-Regular.ttf");
+}
+
+.app_logo_txt{
+    font-family: anton;
+    font-size: x-large;
+    color: var(--accent-color);
+}
+
+.auth_navbar_container{
+    padding: 1.25vh 4vw;
+}
