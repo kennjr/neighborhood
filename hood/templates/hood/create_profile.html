@@ -1,10 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'hood/base/base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block styles %}
+<link rel="stylesheet" href="{% static 'hood/styles/auth_navbar_styles.css' %}">
+<link rel="stylesheet" href="{% static 'hood/styles/create_profile_styles.css' %}">
+{% endblock %}
+
+{% block navbar %}
+{% include 'hood/includes/auth_navbar.html' %}
+{% endblock %}
+
+{% block content %}
+
+    <div class="form_card">
+        <div class="informative_card">
+            <p>Profile information</p>
+        </div>
+        <form method="POST" action="{% url 'login_page' %}">
+            {% csrf_token %}
+            <input type="tel" placeholder="Phone" name="phone_field" required>
+            <input type="text" placeholder="General location" name="gen_loc_field" required>
+            <textarea name="bio_field" placeholder="Bio" maxlength="250"></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+{% endblock %}
