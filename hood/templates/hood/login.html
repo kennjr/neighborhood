@@ -2,8 +2,9 @@
 {% load static %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{% static 'hood/styles/auth_navbar_styles.css' %}">
-    <link rel="stylesheet" href="{% static 'hood/styles/login_styles.css' %}">
+<link rel="stylesheet" href="{% static 'hood/styles/auth_navbar_styles.css' %}">
+<link rel="stylesheet" href="{% static 'hood/styles/create_profile_styles.css' %}">
+<!--<link rel="stylesheet" href="{% static 'hood/styles/login_styles.css' %}">-->
 {% endblock %}
 
 {% block navbar %}
@@ -11,31 +12,35 @@
 {% endblock %}
 
 {% block content %}
-    <div class="outer_auth_container">
-        <div class="auth_container">
-            <div class="auth_info_container">
-                <p id="auth_info_title">Login</p>
-                <p>Login to your account for you to use the app. We restrict users from logging in anonymously, because we value the security of all the users who logged in with their credentials. </p>
-                <p>Stay up-to-date with your neighborhood's affairs by logging in.</p>
-                <p>Don't have an account? <a href="{% url 'register_page' %}">Sign Up</a></p>
-            </div>
-            <div class="auth_form_container">
-                {% if 'next' in request.GET %}
-                    <p>The if is true</p>
-                {% endif %}
+<!--    <div class="outer_auth_container">-->
+<!--        <div class="auth_container">-->
+<!--            <div class="auth_info_container">-->
+<!--                <p id="auth_info_title">Login</p>-->
+<!--                <p>Login to your account for you to use the app. We restrict users from logging in anonymously, because we value the security of all the users who logged in with their credentials. </p>-->
+<!--                <p>Stay up-to-date with your neighborhood's affairs by logging in.</p>-->
+<!--                <p>Don't have an account? <a href="{% url 'register_page' %}">Sign Up</a></p>-->
+<!--            </div>-->
+<!--            <div class="auth_form_container">-->
+<!--                {% if 'next' in request.GET %}-->
+<!--                    <p>The if is true</p>-->
+<!--                {% endif %}-->
 
-                <div class="form_card">
-                    <form method="POST" action="{% url 'login_page' %}">
-                        {% csrf_token %}
-                        <input type="email" placeholder="Email" name="email_field" required>
-                        <input type="text" placeholder="Username" name="identifier_field" required>
-                        <input type="password" placeholder="Password" name="password_field" required>
-                        <button type="submit">Log in</button>
-                    </form>
-                </div>
-            </div>
+<!--                -->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div></div>-->
+<!--    </div>-->
+
+    <div class="form_card">
+        <div class="informative_card">
+            <p>Login credentials</p>
         </div>
-        <div></div>
+        <form method="POST" action="{% url 'login_page' %}">
+            {% csrf_token %}
+            <input type="text" placeholder="Username" name="identifier_field" required>
+            <input type="password" placeholder="Password" name="password_field" required>
+            <button type="submit">Submit</button>
+        </form>
     </div>
 
 {% endblock %}
