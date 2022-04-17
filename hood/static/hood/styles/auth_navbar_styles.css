@@ -1,16 +1,77 @@
-
+:root{
+    --nav_logo_v_padding: 0.5vh;
+    --nav_logo_h_padding: 1vw;
+}
 
 @font-face {
     font-family: "anton";
     src: url("../fonts/Anton-Regular.ttf");
 }
 
+.auth_navbar_container{
+    padding: .5vh 4vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
 .app_logo_txt{
     font-family: anton;
     font-size: x-large;
     color: var(--accent-color);
+    padding: var(--nav_logo_v_padding) var(--nav_logo_h_padding);
 }
 
-.auth_navbar_container{
-    padding: 1.25vh 4vw;
+.app_logo_txt:hover{
+    cursor: pointer;
+    background-color: var(--accent-color);
+    color: #fff;
+    border-radius: 4px;
+    border-width: 1px;
+    border-color: #fff;
+    border-style: solid;
+}
+
+.opt_btn{
+    padding: 1vh 1vw;
+    height: 5.5vh;
+    border-radius: 50px;
+    border-style: solid;
+    border-color: var(--accent-color);
+    border-width: 1px;
+    text-align: center;
+    color: var(--accent-color);
+}
+
+.opt_btn:hover{
+    cursor: pointer;
+}
+
+/* Styling for the phone */
+@media only screen and (max-width: 640px) {
+    /* Here are some changes*/
+    .auth_navbar_container{
+        padding: 1vh 4vw;
+    }
+
+    .app_logo_txt{
+        font-family: anton;
+        font-size: large;
+        color: var(--accent-color);
+    }
+}
+
+/* Styling for the phone */
+@media only screen and (min-width: 641px) and (max-width: 880px) {
+    /* Here are some changes*/
+
+}
+
+/* Styling for the phone */
+@media only screen
+    and (min-width: 881px)
+    and (max-width: 1200px) {
+    /* Here are some changes*/
+
 }
