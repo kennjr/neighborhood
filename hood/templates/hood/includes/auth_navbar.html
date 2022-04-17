@@ -1,9 +1,9 @@
 <div class="auth_navbar_container">
     <p class="app_logo_txt">Neighborhood</p>
     {% if request.path == '/login/' %}
-        <p class="opt_btn">Sign Up</p>
+        <p class="opt_btn" onclick="{% url 'register_page' %}">Sign Up</p>
     {% endif %}
     {% if request.path == '/register/' %}
-        <p class="opt_btn">Login</p>
+        <p class="opt_btn" onclick="{% url 'login_page' %}">Login</p>
     {% endif %}
 </div>
