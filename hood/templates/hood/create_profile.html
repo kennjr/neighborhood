@@ -16,11 +16,31 @@
         <div class="informative_card">
             <p>Profile information</p>
         </div>
-        <form method="POST" action="{% url 'login_page' %}">
+        <form method="POST" action="{% url 'create_profile_page' %}">
             {% csrf_token %}
-            <input type="tel" placeholder="Phone" name="phone_field" required>
-            <input type="text" placeholder="General location" name="gen_loc_field" required>
-            <textarea name="bio_field" placeholder="Bio" maxlength="250"></textarea>
+            {% if profile.neighborhood_name != 'empty' %}
+                <input type="text" placeholder="Neighborhood name" value="{{profile.neighborhood_name}}" name="neighborhood_name_field" required>
+            {% else %}
+                <input type="text" placeholder="Neighborhood name" name="neighborhood_name_field" required>
+            {% endif %}
+
+            {% if profile.phone != 'empty' %}
+                <input type="tel" placeholder="Phone" value="{{profile.phone}}" name="phone_field" required>
+            {% else %}
+                <input type="tel" placeholder="Phone" name="phone_field" required>
+            {% endif %}
+
+            {% if profile.gen_location != 'empty' %}
+                <input type="text" placeholder="General location" value="{{profile.gen_location}}" name="gen_loc_field" required>
+            {% else %}
+                <input type="text" placeholder="General location" name="gen_loc_field" required>
+            {% endif %}
+
+            {% if profile.bio != '' %}
+                <textarea name="bio_field" placeholder="Bio" maxlength="250">{{profile.gen_location}}</textarea>
+            {% else %}
+                <textarea name="bio_field" placeholder="Bio" maxlength="250"></textarea>
+            {% endif %}
             <button type="submit">Submit</button>
         </form>
     </div>
