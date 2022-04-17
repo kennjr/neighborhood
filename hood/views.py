@@ -27,7 +27,7 @@ def login_page(request):
                 login(request, user)
 
                 # Once the user has been logged in successfully we wanna redirect them to the home page
-                return redirect('/')
+                return redirect('/create-profile')
             else:
                 messages.error(request, "The username and password don't matches")
 
@@ -88,10 +88,24 @@ def neighborhoods_page(request):
 @login_required(login_url='/login')
 def create_profile_page(request):
     profile = Profile.objects.filter(user__id=request.user.id).first()
-    if profile:
-        print(f'The profile {profile}')
 
-    context = {"title": "Neighborhood - Create Profile"}
+    if profile.phone != 'empty':
+        redirect('/')
+
+    if request.method == "POST":
+        neighborhood_name = request.POST.get('neighborhood_name_field')
+        phone = request.POST.get('phone_field')
+        location = request.POST.get('gen_loc_field')
+        bio = request.POST.get('bio_field')
+
+        profile.neighborhood_name = neighborhood_name
+        profile.bio = bio
+        profile.phone = phone
+        profile.gen_location = location
+        profile.save()
+        return redirect('/')
+
+    context = {"title": "Neighborhood - Create Profile", 'profile': profile}
     return render(request, 'hood/create_profile.html', context)
 
 
