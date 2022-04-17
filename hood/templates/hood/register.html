@@ -30,11 +30,11 @@
         <div class="informative_card">
             <p>Create an account</p>
         </div>
-        <form method="POST" action="{% url 'login_page' %}">
+        <form method="POST" action="{% url 'register_page' %}">
             {% csrf_token %}
             <input type="text" placeholder="Name" name="name_field" required>
             <input type="email" placeholder="Email" name="email_field" required>
-            <input type="text" placeholder="Username" name="identifier_field" required>
+            <input type="text" placeholder="Username" name="username_field" required>
             <input type="password" placeholder="Password" name="password_field" required>
             <button type="submit">Submit</button>
         </form>
