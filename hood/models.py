@@ -20,6 +20,7 @@ class Profile(models.Model):
     gen_location = models.CharField(blank=False, null=False, max_length=133)
     neighborhood_name = models.CharField(blank=False, null=False, max_length=99)
     neighborhood = models.ForeignKey(Neighborhood, on_delete=models.CASCADE, null=True, max_length=99)
+    phone = models.CharField(max_length=22)
     # The auto_now is updated every time a model item is updated/saved with new changes
     updated = models.DateTimeField(auto_now=True)
     # The auto_now_add is updated once, when the model item is created/added to the db
