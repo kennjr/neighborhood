@@ -4,7 +4,9 @@
     width: 87.5%;
     margin: 1vh 0;
     padding: 1vh 1vw;
-    box-shadow: 1px 2px 2px 1px rgba(0,0,0,0.2);
+    border-width: 1px;
+    border-style: solid;
+    border-color: #bfbfbf;
     border-radius: 4px;
     align-items: center;
 }
@@ -51,7 +53,7 @@
     text-align: center;
 }
 
-.join_btn{
+.grid_join_btn{
     width: 90%;
     padding: 1vh 2vw;
     margin-bottom: 0.95vh;
