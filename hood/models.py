@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from cloudinary.models import CloudinaryField
 
 
 # Create your models here.
@@ -63,4 +64,14 @@ class Member(models.Model):
 
     def __str__(self):
         return f'{self.user.username}'
+
+
+class Post(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
+    neighborhood = models.ForeignKey(Neighborhood, on_delete=models.CASCADE, null=True)
+    image = CloudinaryField('post_img', null=True, blank=True)
+    message = models.TextField(null=False, blank=False)
+    updated = models.DateTimeField(auto_now=True)
+    # The auto_now_add is updated once, when the model item is created/added to the db
+    created = models.DateTimeField(auto_now_add=True)
 
