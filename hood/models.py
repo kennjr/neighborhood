@@ -48,3 +48,16 @@ class Profile(models.Model):
     def search_profile_by_website(cls, website):
         search_results = cls.objects.filter(website=website).all()
         return search_results
+
+
+class Member(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    status = models.SmallIntegerField(default=0, null=False, blank=True)
+    neighborhood = models.ForeignKey(Neighborhood, on_delete=models.SET_NULL)
+    updated = models.DateTimeField(auto_now=True)
+    # The auto_now_add is updated once, when the model item is created/added to the db
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.user.username}'
+
