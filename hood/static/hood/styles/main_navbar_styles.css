@@ -1,0 +1,65 @@
+:root{
+    --nav_logo_v_padding: 0.5vh;
+    --nav_logo_h_padding: .75vw;
+}
+
+@font-face {
+    font-family: "anton";
+    src: url("../fonts/Anton-Regular.ttf");
+}
+
+.navbar_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1vh 4vw;
+    align-items: center;
+    background-color: #fff;
+}
+
+.app_logo_txt{
+    font-family: anton;
+    font-size: x-large;
+    color: var(--accent-color);
+    padding: var(--nav_logo_v_padding) var(--nav_logo_h_padding);
+}
+
+.app_logo_txt:hover{
+    cursor: pointer;
+    background-color: var(--accent-color);
+    color: #fff;
+    border-radius: 4px;
+    border-width: 1px;
+    border-color: #fff;
+    border-style: solid;
+}
+
+.nav_search_container{
+    width: 30%;
+}
+
+input{
+    width: 100%;
+    padding: 0.75vh 1.25vw;
+    font-size: medium;
+    border-radius: 3.5px;
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: #a6a6a6;
+    outline: none;
+    background-color: #f2f2f2;
+}
+
+input:focus{
+    background-color: #fff;
+}
+
+.profile_img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.profile_img:hover{
+    cursor: pointer;
+}
