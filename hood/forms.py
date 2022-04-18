@@ -1,0 +1,17 @@
+from django.forms import ModelForm, TextInput, Textarea
+
+from hood.models import Post
+
+
+class PostForm(ModelForm):
+    class Meta:
+        model = Post
+        # when we use all as the val for the fields' var, then we tell django that we want a form that has input fields
+        #  for all the columns that we've got in the table
+        fields = ('image', 'message')
+        widgets = {
+            'message': TextInput(attrs={
+                'class': "msg_input",
+                'placeholder': 'Message'
+                }),
+        }
