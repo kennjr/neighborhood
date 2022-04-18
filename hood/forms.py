@@ -1,4 +1,4 @@
-from django.forms import ModelForm, TextInput, Textarea
+from django.forms import ModelForm, Textarea
 
 from hood.models import Post
 
@@ -10,8 +10,8 @@ class PostForm(ModelForm):
         #  for all the columns that we've got in the table
         fields = ('image', 'message')
         widgets = {
-            'message': TextInput(attrs={
-                'class': "msg_input",
+            'message': Textarea(attrs={
+                'class': "m_txt_area",
                 'placeholder': 'Message'
                 }),
         }

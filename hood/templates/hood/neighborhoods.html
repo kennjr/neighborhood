@@ -2,10 +2,10 @@
 {% load static %}
 
 {% block styles %}
-<link rel="stylesheet" href="{% static 'hood/styles/auth_navbar_styles.css' %}">
-<link rel="stylesheet" href="{% static 'hood/styles/item_neighborhood_styles.css' %}">
-<link rel="stylesheet" href="{% static 'hood/styles/grid_item_neighborhood_styles.css' %}">
-<link rel="stylesheet" href="{% static 'hood/styles/neighborhoods_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'hood/styles/auth_navbar_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'hood/styles/item_neighborhood_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'hood/styles/grid_item_neighborhood_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'hood/styles/neighborhoods_styles.css' %}">
 {% endblock %}
 
 {% block navbar %}
@@ -21,13 +21,12 @@
 <!--    </div>-->
     <div class="index_container">
         <div class="informative_card">
-            <p>Join a group, for the neighborhood that you reside</p>
+            <p id="informative_txt">Join a group, for the neighborhood that you reside</p>
         </div>
         <div class="results">
-            {% for item in my_range %}
-                {% include 'hood/includes/layout_grid_item_neighborhood.html' %}
+            {% for item in neighborhoods %}
+                {% include 'hood/includes/layout_grid_item_neighborhood.html' with item=item %}
             {% endfor %}
-
         </div>
     </div>
 
