@@ -14,7 +14,7 @@ class Neighborhood(models.Model):
 
 
 class Profile(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, unique=True)
     # profile_img = models.ImageField(upload_to='images', blank=True)
     bio = models.TextField(blank=True)
     gen_location = models.CharField(blank=False, null=False, max_length=133)
@@ -51,9 +51,9 @@ class Profile(models.Model):
 
 
 class Member(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, unique=True)
     status = models.SmallIntegerField(default=0, null=False, blank=True)
-    neighborhood = models.ForeignKey(Neighborhood, on_delete=models.SET_NULL)
+    neighborhood = models.ForeignKey(Neighborhood, on_delete=models.SET_NULL, null=True)
     updated = models.DateTimeField(auto_now=True)
     # The auto_now_add is updated once, when the model item is created/added to the db
     created = models.DateTimeField(auto_now_add=True)
