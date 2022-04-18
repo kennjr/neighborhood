@@ -1,0 +1,13 @@
+<div class="neighborhood_grid_item_container">
+    <img src="/static/hood/images/ic_neighborhood.svg" alt="Neighborhood image">
+        <div class="neighborhood_info_grid_container">
+            <p class="neighborhood_grid_name_txt">{{ item.name }}</p>
+            <p class="neighborhood_grid_loc_txt">{{ item.location }}</p>
+            <div class="neighborhood_grid_members_container el_in_row">
+                <img src="/static/hood/images/ic_people.svg" alt="Neighborhood image">
+                <p class="neighborhood_grid_members_txt">{{item.members_count}} members</p>
+            </div>
+    </div>
+
+    <button class="grid_join_btn" onclick="window.location.href='{% url 'selected_neighborhood_page' item.id %}'">Join</button>
+</div>
