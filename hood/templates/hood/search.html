@@ -1,0 +1,16 @@
+{% extends 'hood/base/base.html' %}
+{% load static %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'hood/styles/index_styles.css' %}">
+  <link rel="stylesheet" href="{% static 'hood/styles/main_navbar_styles.css' %}">
+{% endblock %}
+
+{% block navbar %}
+    {% include 'hood/includes/main_navbar.html' %}
+{% endblock %}
+
+{% block content %}
+    {{search_str}}
+
+{% endblock %}

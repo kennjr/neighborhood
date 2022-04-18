@@ -1,10 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'hood/base/base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block styles %}
+<link rel="stylesheet" href="{% static 'hood/styles/index_styles.css' %}">
+<link rel="stylesheet" href="{% static 'hood/styles/main_navbar_styles.css' %}">
+<link rel="stylesheet" href="{% static 'hood/styles/post_item_styles.css' %}">
+{% endblock %}
+
+{% block navbar %}
+    {% include 'hood/includes/main_navbar.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="home_container">
+        <div class="posts_container">
+            <div class="post_form_container">
+                <form method="POST" action="">
+                    <input id="msg_input" name="message_field" placeholder="Message" required>
+                </form>
+            </div>
+            {% include 'hood/includes/post_item.html' %}
+        </div>
+        <div class="activity_ocontainer">
+            <div class="title_container">
+
+<!--                <p id="msg_from_admin">from Admin</p>-->
+            </div>
+            <div class="activity_content">
+<!--                <p id="msg_txt">Hi, hope y'all are good. As the admin of the Bed Stuy locals, I'd like to welcome everyone to the group. It is my hope that we're gonna have fruitful discussions in this group that will help us, as the residents of Bedford-Stuyvesant, live harmoniously.</p>-->
+<!--                <p id="msg_timestamp">17 Apr, 2022 11:50am</p>-->
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
