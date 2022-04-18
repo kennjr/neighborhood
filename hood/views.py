@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 
 
 # Create your views here.
-from hood.models import Profile
+from hood.models import Profile, Neighborhood, Member
 
 
 def login_page(request):
@@ -80,16 +80,46 @@ def register_page(request):
 
 @login_required(login_url='/login')
 def neighborhoods_page(request):
-    my_range = range(0, 4)
-    context = {"title": "Neighborhood - Hoods", "my_range": my_range}
+    neighborhoods = Neighborhood.objects.all()
+    context = {"title": "Neighborhood - Hoods", "neighborhoods": neighborhoods}
     return render(request, 'hood/neighborhoods.html', context)
+
+
+@login_required(login_url='/login')
+def selected_neighborhood_page(request, n_id):
+    neighborhood = Neighborhood.objects.filter(id=n_id).first()
+    if neighborhood:
+        # Incr the members count by one
+        neighborhood.members_count = neighborhood.members_count + 1
+        neighborhood.save()
+        # Get the profile and update the neighborhood
+        user_profile = Profile.objects.filter(user__id=request.user.id).first()
+        if user_profile:
+            # update the user's neighborhood
+            user_profile.neighborhood = neighborhood
+            user_profile.save()
+        # Add an else so that we can cancel the execution
+        else:
+            return redirect('/neighborhoods')
+        # get the user's member item and update it else create it
+        user_member = Member.objects.filter(user__id=request.user.id).first()
+        if user_member:
+            user_member.status = 0
+            user_member.neighborhood = neighborhood
+            user_member.save()
+        else:
+            # we're gonna create the member
+            Member.objects.create(user=request.user, status=0, neighborhood=neighborhood)
+        return redirect('/')
+    else:
+        return redirect('/neighborhoods')
 
 
 @login_required(login_url='/login')
 def create_profile_page(request):
     profile = Profile.objects.filter(user__id=request.user.id).first()
 
-    if profile.phone != 'empty':
+    if profile and profile.phone != 'empty':
         redirect('/')
 
     if request.method == "POST":
