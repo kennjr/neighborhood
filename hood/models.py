@@ -12,6 +12,9 @@ class Neighborhood(models.Model):
     description = models.TextField(null=False, blank=True)
     members_count = models.IntegerField(default=0)
 
+    def __str__(self):
+        return f'{self.name}'
+
 
 class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, unique=True)
@@ -19,7 +22,7 @@ class Profile(models.Model):
     bio = models.TextField(blank=True)
     gen_location = models.CharField(blank=False, null=False, max_length=133)
     neighborhood_name = models.CharField(blank=False, null=False, max_length=99)
-    neighborhood = models.ForeignKey(Neighborhood, on_delete=models.CASCADE, null=True, max_length=99)
+    neighborhood = models.ForeignKey(Neighborhood, on_delete=models.SET_NULL, null=True, max_length=99, blank=True)
     phone = models.CharField(max_length=22)
     # The auto_now is updated every time a model item is updated/saved with new changes
     updated = models.DateTimeField(auto_now=True)
