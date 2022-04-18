@@ -75,3 +75,18 @@ class Post(models.Model):
     # The auto_now_add is updated once, when the model item is created/added to the db
     created = models.DateTimeField(auto_now_add=True)
 
+
+class Business(models.Model):
+    name = models.CharField(max_length=99, null=False, blank=False)
+    location = models.CharField(max_length=122, null=False, blank=False)
+    neighborhood = models.ForeignKey(Neighborhood, on_delete=models.CASCADE)
+    email = models.EmailField(null=True, blank=True)
+    open_time = models.CharField(max_length=33, null=True, blank=True)
+    close_time = models.CharField(max_length=33, null=True, blank=True)
+    website = models.CharField(max_length=77, null=True, blank=True)
+    phone = models.CharField(max_length=20, null=True, blank=True)
+    updated = models.DateTimeField(auto_now=True)
+    # The auto_now_add is updated once, when the model item is created/added to the db
+    created = models.DateTimeField(auto_now_add=True)
+
+
