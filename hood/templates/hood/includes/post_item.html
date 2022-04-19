@@ -1,0 +1,25 @@
+<div class="post_container">
+    <div class="post_top_sect">
+        <div class="post_user_info_container">
+            <img src="/static/hood/images/ic_account.svg" alt="View creator's account">
+            <div class="post_user_text_info_container">
+                <p class="post_user_username_txt">{{post_item.user.username}}</p>
+                <p class="post_user_location_txt">{{post_item.neighborhood.location}}</p>
+            </div>
+        </div>
+        {% if request.user == post_item.user %}
+            <form class="post_opt_form" method="POST" action="">
+                {% csrf_token %}
+                <button type="submit">Delete</button>
+            </form>
+        {% endif %}
+    </div>
+    <div class="post_mid_sect">
+        <img src="{{post_item.image.url}}" alt="Creator's post">
+    </div>
+    <div class="post_bottom_sect">
+        <p class="post_created_at_txt">{{post_item.created}}</p>
+        <p class="post_caption_txt"><strong>{{post_item.user.username}}</strong> {{post_item.message}}</p>
+
+    </div>
+</div>

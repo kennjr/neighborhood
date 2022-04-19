@@ -1,0 +1,139 @@
+*{
+    background-color: #fff;
+}
+
+.post_container{
+    display: flex;
+    flex-direction: column;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #cccccc;
+    border-radius: 3px;
+    width: 60%;
+    align-self: center;
+    justify-self: center;
+    padding-bottom: 0;
+    background-color: #000;
+    margin: 1vh 0;
+}
+
+.post_top_sect{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2vh 1vw;
+}
+
+.post_user_info_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.post_user_text_info_container{
+    display: flex;
+    flex-direction: column;
+}
+
+.post_user_username_txt{
+    font-size: 16.5px;
+    color: #000;
+    margin: 0.1vh 1.25vw;
+}
+
+.post_user_location_txt{
+    font-size: 13px;
+    color: #737373;
+    margin: 0.1vh 1.25vw;
+}
+
+.post_user_info_container > img{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+.post_mid_sect{
+    width: 100%;
+    height: 100%;
+}
+
+.post_mid_sect > img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.post_bottom_sect{
+    display: flex;
+    flex-direction: column;
+    padding-left: 2vh;
+    padding-top: 1vh;
+    padding-bottom: 0;
+}
+
+.post_bottom_sect > p{
+    padding-left: .5vw;
+}
+
+.post_likes_txt{
+    margin-top: 1vh;
+    margin-bottom: 0.95vh;
+}
+
+.post_created_at_txt{
+    margin-top: 0;
+    margin-bottom: 0.95vh;
+    font-size: 13.5px;
+    color: grey;
+}
+
+.post_caption_txt{
+    margin-top: 0;
+    padding-bottom: 1.75vh;
+}
+
+.post_action_opts_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+}
+
+.post_action_opts_container > img {
+    width: 25px;
+    height: 25px;
+    padding: 1vh 0.8vw;
+    margin-right: 0.5vw;
+}
+
+.post_action_opts_container > img:hover{
+    cursor: pointer;
+}
+
+button{
+    width: 100%;
+    padding: 0.5vh 1vw;
+    margin-right: 1vw;
+    /*background-color: #4d79ff;*/
+    background-color: #fff;
+    align-self: flex-end;
+    outline: none;
+    border-width: 0px;
+    border-radius: 3px;
+    font-size: medium;
+    color: #4d79ff;
+    display: block;
+    margin: 3vh 0;
+}
+
+button:hover{
+    background-color: rgba(191, 191, 191, 0.3);
+    cursor: pointer;
+}
+
+.post_opt_form{
+    width: 20%;
+}
