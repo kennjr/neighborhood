@@ -19,12 +19,11 @@ class Neighborhood(models.Model):
     def create_neighborhood(self):
         return self.save()
 
-    @classmethod
-    def update_members(cls, neigh_id, new_count):
-        neighborhood = cls.objects.filter(id=neigh_id).first()
-        neighborhood.members_count = new_count
-        neighborhood.save()
-        return neighborhood
+    def update_neighborhood(self):
+        return self.save()
+
+    def update_members(self):
+        return self.save()
 
     @classmethod
     def get_all_items(cls):
@@ -113,7 +112,6 @@ class Member(models.Model):
         return search_results
 
 
-
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
     neighborhood = models.ForeignKey(Neighborhood, on_delete=models.CASCADE, null=True)
@@ -152,7 +150,6 @@ class Post(models.Model):
         return filter_results
 
 
-
 class Business(models.Model):
     name = models.CharField(max_length=99, null=False, blank=False)
     location = models.CharField(max_length=122, null=False, blank=False)
@@ -172,12 +169,8 @@ class Business(models.Model):
     def create_business(self):
         return self.save()
 
-    @classmethod
-    def update_members(cls, neigh_id, new_count):
-        neighborhood = cls.objects.filter(id=neigh_id).first()
-        neighborhood.members_count = new_count
-        neighborhood.save()
-        return neighborhood
+    def update_business(self):
+        return self.save()
 
     @classmethod
     def get_all_items(cls):
