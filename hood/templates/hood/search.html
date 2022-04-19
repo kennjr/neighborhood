@@ -2,8 +2,10 @@
 {% load static %}
 
 {% block styles %}
-  <link rel="stylesheet" href="{% static 'hood/styles/index_styles.css' %}">
-  <link rel="stylesheet" href="{% static 'hood/styles/main_navbar_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'hood/styles/index_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'hood/styles/search_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'hood/styles/main_navbar_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'hood/styles/item_neighborhood_styles.css' %}">
 {% endblock %}
 
 {% block navbar %}
@@ -11,6 +13,36 @@
 {% endblock %}
 
 {% block content %}
-    {{search_str}}
+    <div class="search_container">
+        <div class="filters_ocontainer">
+<!--            <div class="title_container">-->
+<!--                <p>Filters</p>-->
+<!--            </div>-->
+<!--            <div class="filters_content">-->
+<!--                &lt;!&ndash; todo Add onclicks for both the filter items &ndash;&gt;-->
+<!--                <div class="filter_item_container" >-->
+<!--                    <p>Users</p>-->
+<!--                    <p class="filter_item_count">{{posts_count}}</p>-->
+<!--                </div>-->
+<!--                <div class="divider"></div>-->
+<!--                <div class="filter_item_container" >-->
+<!--                    <p>Posts</p>-->
+<!--                    <p class="filter_item_count">{{posts_count}}</p>-->
+<!--                </div>-->
+<!--            </div>-->
+        </div>
+        <div class="results_container">
+            {% if results_count <= 0 %}
+                <p>No results found :(</p>
+            {% else %}
+
+                {% for post in results %}
+                    {% include 'hood/includes/layout_list_item_neighborhood.html' with result=post %}
+                {% endfor %}
+
+            {% endif %}
+
+        </div>
+    </div>
 
 {% endblock %}
