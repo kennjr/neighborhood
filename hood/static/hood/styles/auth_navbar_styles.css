@@ -60,6 +60,17 @@
         font-size: large;
         color: var(--accent-color);
     }
+
+    .opt_btn{
+        padding: 1vh 2vw;
+        height: 7vh;
+        border-radius: 50px;
+        border-style: solid;
+        border-color: var(--accent-color);
+        border-width: 1px;
+        text-align: center;
+        color: var(--accent-color);
+    }
 }
 
 /* Styling for the phone */

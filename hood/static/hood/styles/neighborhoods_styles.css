@@ -45,6 +45,11 @@
     border-color: var(--accent-color);
 }
 
+.informative_txt{
+    margin: 0;
+    padding: 0;
+}
+
 /* Styling for the phone */
 @media only screen and (max-width: 595px) {
     /* Here are some changes*/
@@ -56,6 +61,11 @@
         grid-auto-rows: 1fr;
         width: 80%;
         margin: 0 auto;
+    }
+
+    .informative_txt{
+        margin: 0;
+        padding: 0.05vh 1vw;
     }
 }
 
