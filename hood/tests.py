@@ -112,10 +112,24 @@ class NeighborhoodTestsClass(TestCase):
         self.test_neighborhood.create_neighborhood()
         old_mem_count = self.test_neighborhood.members_count
         print(f'the old count{old_mem_count}')
-        self.test_neighborhood.update_members(self.test_neighborhood.id, (old_mem_count + 1))
+        self.test_neighborhood.members_count = (old_mem_count + 1)
+        self.test_neighborhood.update_members()
         new_mem_count = self.test_neighborhood.members_count
         print(f'the new count{new_mem_count}')
         self.assertTrue(new_mem_count > old_mem_count)
+
+    def test_update_neighborhood(self):
+        self.test_neighborhood.create_neighborhood()
+        old_mem_count = self.test_neighborhood.members_count
+        old_neighborhood = self.test_neighborhood.description
+        print(f'the old count{old_mem_count}')
+        self.test_neighborhood.members_count = (old_mem_count + 1)
+        self.test_neighborhood.description = "A short sedcription"
+        self.test_neighborhood.update_neighborhood()
+        new_neighborhood = self.test_neighborhood.description
+        new_mem_count = self.test_neighborhood.members_count
+        print(f'the new count{new_mem_count}')
+        self.assertTrue(old_neighborhood != new_neighborhood)
 
 
 class BusinessTestsClass(TestCase):
@@ -173,6 +187,16 @@ class BusinessTestsClass(TestCase):
         new_mem_count = self.test_neighborhood.members_count
         print(f'the new count{new_mem_count}')
         self.assertTrue(new_mem_count > old_mem_count)
+
+    def test_update_neighborhood(self):
+        self.test_business.create_business()
+        old_phone = self.test_business.phone
+
+        self.test_business.phone = "i02i391i9"
+        self.test_business.update_business()
+        new_phone = self.test_business.phone
+        self.assertTrue(old_phone != new_phone)
+
 
 
 class PostTestsClass(TestCase):
