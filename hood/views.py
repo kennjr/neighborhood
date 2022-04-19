@@ -2,11 +2,13 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.db.models import Q
 from django.shortcuts import render, redirect
 
 
 # Create your views here.
-from hood.models import Profile, Neighborhood, Member
+from hood.forms import PostForm
+from hood.models import Profile, Neighborhood, Member, Post, Business
 
 
 def login_page(request):
@@ -118,9 +120,10 @@ def selected_neighborhood_page(request, n_id):
 @login_required(login_url='/login')
 def create_profile_page(request):
     profile = Profile.objects.filter(user__id=request.user.id).first()
+    # user_member = Member.objects.filter(user__id=request.user.id).first()
 
     if profile and profile.phone != 'empty':
-        redirect('/')
+        return redirect('/')
 
     if request.method == "POST":
         neighborhood_name = request.POST.get('neighborhood_name_field')
@@ -140,7 +143,58 @@ def create_profile_page(request):
 
 
 @login_required(login_url='/login')
-def index(request):
+def search_page(request):
+    search_req = request.GET.get('q') if request.GET.get('q') is not None else ''
 
-    context = {"title": "Neighborhood - Home"}
-    return render(request, 'hood/index.html', context)
+    results = Business.objects.filter(
+        Q(name__icontains=search_req) |
+        Q(location__icontains=search_req) |
+        Q(email__icontains=search_req)
+    ).all()
+    results_count = len(results)
+
+    context = {'title': f'Search - {search_req}', 'results': results, 'results_count': results_count,
+               'search_str': search_req}
+
+    return render(request, 'hood/search.html', context)
+
+
+@login_required(login_url='/login')
+def index(request):
+    # user_profile = Profile.objects.filter(user__id=request.user.id).first()
+
+    user_member = Member.objects.filter(user__id=request.user.id).first()
+    # check if the user has a neighborhood selected
+    if user_member and user_member.neighborhood:
+        if request.method == "POST":
+            form = PostForm(request.POST, request.FILES)
+            form.instance.user = request.user
+            form.instance.neighborhood = user_member.neighborhood
+            if form.is_valid():
+                form.save()
+                return redirect('/')
+        form = PostForm()
+        posts = Post.objects.filter(neighborhood=user_member.neighborhood).all()
+        context = {"title": f"Neighborhood - {user_member.neighborhood.name}", 'status': user_member.status,
+                   'form': form, 'posts': posts, 'user_member': user_member}
+        return render(request, 'hood/index.html', context)
+    else:
+        return redirect('/neighborhoods')
+
+
+@login_required(login_url='/login')
+def leave_community_page(request):
+    user_member = Member.objects.filter(user__id=request.user.id).first()
+    print(f'The member {user_member}')
+    if user_member:
+        neighborhood = user_member.neighborhood
+        neighborhood.members_count = neighborhood.members_count - 1
+        neighborhood.save()
+
+        user_member.neighborhood = None
+        user_member.status = 0
+        user_member.save()
+        return redirect('/neighborhoods')
+    else:
+        return redirect('/')
+
