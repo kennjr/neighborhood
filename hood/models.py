@@ -16,6 +16,33 @@ class Neighborhood(models.Model):
     def __str__(self):
         return f'{self.name}'
 
+    def create_neighborhood(self):
+        return self.save()
+
+    @classmethod
+    def update_members(cls, neigh_id, new_count):
+        neighborhood = cls.objects.filter(id=neigh_id).first()
+        neighborhood.members_count = new_count
+        neighborhood.save()
+        return neighborhood
+
+    @classmethod
+    def get_all_items(cls):
+        return cls.objects.all()
+
+    @classmethod
+    def delete_neighborhood(cls, id):
+        return cls.objects.filter(id=id).delete()
+
+    @classmethod
+    def find_neighborhood(cls, id):
+        return cls.objects.filter(id=id).all()
+
+    @classmethod
+    def search_item_by_location(cls, location):
+        search_results = cls.objects.filter(location=location).all()
+        return search_results
+
 
 class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, unique=True)
@@ -49,8 +76,8 @@ class Profile(models.Model):
         return cls.objects.filter(id=id).all()
 
     @classmethod
-    def search_profile_by_website(cls, website):
-        search_results = cls.objects.filter(website=website).all()
+    def search_profile_by_neigh_name(cls, name):
+        search_results = cls.objects.filter(neighborhood_name=name).all()
         return search_results
 
 
@@ -65,6 +92,27 @@ class Member(models.Model):
     def __str__(self):
         return f'{self.user.username}'
 
+    def create_member(self):
+        return self.save()
+
+    @classmethod
+    def get_all_items(cls):
+        return cls.objects.all()
+
+    @classmethod
+    def delete_member(cls, id):
+        return cls.objects.filter(id=id).delete()
+
+    @classmethod
+    def find_member(cls, id):
+        return cls.objects.filter(id=id).all()
+
+    @classmethod
+    def search_item_by_username(cls, username):
+        search_results = cls.objects.filter(user__username__icontains=username).all()
+        return search_results
+
+
 
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
@@ -74,6 +122,35 @@ class Post(models.Model):
     updated = models.DateTimeField(auto_now=True)
     # The auto_now_add is updated once, when the model item is created/added to the db
     created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.user}'
+
+    def save_post(self):
+        return self.save()
+
+    @classmethod
+    def get_all_posts(cls):
+        return cls.objects.order_by("created")
+
+    @classmethod
+    def delete_post(cls, id):
+        return cls.objects.filter(id=id).delete()
+
+    @classmethod
+    def get_post_by_id(cls, id):
+        return cls.objects.filter(id=id).all()
+
+    @classmethod
+    def search_posts_by_creator_id(cls, creator_id):
+        search_results = cls.objects.filter(user__id=creator_id).all()
+        return search_results
+
+    @classmethod
+    def filter_by_username(cls, username):
+        filter_results = cls.objects.filter(user__username__icontains=username).all()
+        return filter_results
+
 
 
 class Business(models.Model):
@@ -88,5 +165,36 @@ class Business(models.Model):
     updated = models.DateTimeField(auto_now=True)
     # The auto_now_add is updated once, when the model item is created/added to the db
     created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.name}'
+
+    def create_business(self):
+        return self.save()
+
+    @classmethod
+    def update_members(cls, neigh_id, new_count):
+        neighborhood = cls.objects.filter(id=neigh_id).first()
+        neighborhood.members_count = new_count
+        neighborhood.save()
+        return neighborhood
+
+    @classmethod
+    def get_all_items(cls):
+        return cls.objects.all()
+
+    @classmethod
+    def delete_business(cls, id):
+        return cls.objects.filter(id=id).delete()
+
+    @classmethod
+    def find_business(cls, id):
+        return cls.objects.filter(id=id).all()
+
+    @classmethod
+    def search_item_by_location(cls, location):
+        search_results = cls.objects.filter(location=location).all()
+        return search_results
+
 
 
