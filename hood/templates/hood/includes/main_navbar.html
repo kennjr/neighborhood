@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div class="navbar_container">
+    <div class="nav_home_container">
+        <p class="app_logo_txt" onclick="window.location.href='{% url 'index' %}'">Neighborhood</p>
+    </div>
+    <div class="nav_search_container">
+        <form method="GET" action="{% url 'search_page' %}">
+            <!-- We don't need a csrf token since this is a get req -->
+            <input class="search_field" name="q" type="text" placeholder="Search...">
+        </form>
+    </div>
+    <div class="nav_opts_container">
+        <button class="about_btn" onclick="open_modal('{{user_member.neighborhood.name}}', '{{user_member.neighborhood.location}}', '{{user_member.neighborhood.admin}}', '{{ user_member.neighborhood.police_dept }}', '{{ user_member.neighborhood.hospital_contact }}');">About</button>
+        <button class="btn" onclick="window.location.href='{% url 'leave_community_page' %}'">Leave</button>
+        {% if is_a_profile %}
+            <img class="profile_img" src="/static/hood/images/ic_account.svg" onclick="window.location.href='{% url 'index' %}'" alt="Navigate to profile">
+        {% endif %}
 
-</body>
-</html>
+    </div>
+</div>
