@@ -2,9 +2,12 @@
 {% load static %}
 
 {% block styles %}
-<link rel="stylesheet" href="{% static 'hood/styles/index_styles.css' %}">
-<link rel="stylesheet" href="{% static 'hood/styles/main_navbar_styles.css' %}">
-<link rel="stylesheet" href="{% static 'hood/styles/post_item_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'hood/styles/index_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'hood/styles/main_navbar_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'hood/styles/post_item_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'hood/styles/modal_styles.css' %}">
+    <script src="{% static 'hood/scripts/index_scripts.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'hood/styles/new_post_form_styles.css' %}">
 {% endblock %}
 
 {% block navbar %}
@@ -14,12 +17,18 @@
 {% block content %}
     <div class="home_container">
         <div class="posts_container">
-            <div class="post_form_container">
-                <form method="POST" action="">
-                    <input id="msg_input" name="message_field" placeholder="Message" required>
-                </form>
-            </div>
-            {% include 'hood/includes/post_item.html' %}
+            {% if user_member.status != 1 %}
+                <div class="informative_card">
+                    <p id="informative_txt">Your request to be an active member of the neighborhood grp is being reviewed</p>
+                </div>
+            {% else %}
+                <div class="post_form_container">
+                    {% include 'hood/includes/new_post_form.html' %}
+                </div>
+            {% endif %}
+            {% for post in posts %}
+                {% include 'hood/includes/post_item.html' with post_item=post %}
+            {% endfor %}
         </div>
         <div class="activity_ocontainer">
             <div class="title_container">
@@ -31,6 +40,9 @@
 <!--                <p id="msg_timestamp">17 Apr, 2022 11:50am</p>-->
             </div>
         </div>
+    </div>
+    <div class="modal">
+        {% include 'hood/includes/abt_modal.html' %}
     </div>
 
 {% endblock %}
