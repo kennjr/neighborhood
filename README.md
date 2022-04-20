@@ -30,9 +30,6 @@ https://newneighborhood.herokuapp.com/
 
 <img src="https://github.com/kennjr/neighborhood/blob/master/screenshot_3.png?raw=true" > 
 
-<img src="https://github.com/kennjr/neighborhood/blob/master/screenshot_4.png?raw=true" > 
-
-<img src="https://github.com/kennjr/neighborhood/blob/master/screenshot_5.png?raw=true" > 
 
 ## Known bugs
 The application doesn't have any known bugs.
