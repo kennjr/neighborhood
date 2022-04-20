@@ -20,7 +20,7 @@ Users of the application can share posts with members of their neighborhood grou
 - Responsive UI
 
 ## Live link
-https://awwarrds.herokuapp.com/
+https://newneighborhood.herokuapp.com/
 
 ## Known bugs
 The application doesn't have any known bugs.
