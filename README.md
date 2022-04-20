@@ -22,6 +22,18 @@ Users of the application can share posts with members of their neighborhood grou
 ## Live link
 https://newneighborhood.herokuapp.com/
 
+## Screenshots
+
+ <img src="https://github.com/kennjr/neighborhood/blob/master/screenshot_1.png?raw=true" > 
+
+ <img src="https://github.com/kennjr/neighborhood/blob/master/screenshot_2.png?raw=true" > 
+
+<img src="https://github.com/kennjr/neighborhood/blob/master/screenshot_3.png?raw=true" > 
+
+<img src="https://github.com/kennjr/neighborhood/blob/master/screenshot_4.png?raw=true" > 
+
+<img src="https://github.com/kennjr/neighborhood/blob/master/screenshot_5.png?raw=true" > 
+
 ## Known bugs
 The application doesn't have any known bugs.
 
